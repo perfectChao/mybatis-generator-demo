@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="test.model.UserInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="iconpath" property="iconpath" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="registdate" property="registdate" jdbcType="TIMESTAMP" />
+    <result column="is_forbidden" property="isForbidden" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, password, nickname, mobile, email, iconpath, gender, registdate, is_forbidden
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from doga_userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from doga_userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="test.model.UserInfo" >
+    insert into doga_userinfo (id, password, nickname, 
+      mobile, email, iconpath, 
+      gender, registdate, is_forbidden
+      )
+    values (#{id,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{iconpath,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{registdate,jdbcType=TIMESTAMP}, #{isForbidden,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.model.UserInfo" >
+    insert into doga_userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="iconpath != null" >
+        iconpath,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="registdate != null" >
+        registdate,
+      </if>
+      <if test="isForbidden != null" >
+        is_forbidden,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="iconpath != null" >
+        #{iconpath,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="registdate != null" >
+        #{registdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isForbidden != null" >
+        #{isForbidden,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="test.model.UserInfo" >
+    update doga_userinfo
+    <set >
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="iconpath != null" >
+        iconpath = #{iconpath,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="registdate != null" >
+        registdate = #{registdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isForbidden != null" >
+        is_forbidden = #{isForbidden,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test.model.UserInfo" >
+    update doga_userinfo
+    set password = #{password,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      iconpath = #{iconpath,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      registdate = #{registdate,jdbcType=TIMESTAMP},
+      is_forbidden = #{isForbidden,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
